@@ -1,3 +1,4 @@
+// Elements
 const qrDataElement = document.querySelector("#qr-data");
 const qrCodeListElement = document.querySelector("#qr-code-list");
 const validateUrlElement = document.querySelector("#validate-url");
@@ -6,9 +7,11 @@ const validCountElement = document.querySelector("#valid-count");
 const invalidCountElement = document.querySelector("#invalid-count");
 const downloadZipButton = document.querySelector("#download-zip");
 
+// Variables
 let validUrls = [];
 let invalidUrls = [];
 
+// Functions
 function isValidUrl(url) {
 	try {
 		new URL(url);
@@ -60,12 +63,11 @@ function updateCountElements() {
 	}
 }
 
-qrDataElement.addEventListener("input", generateQrCodes);
-validateUrlElement.addEventListener("change", () => {
+function updateURLs() {
 	generateQrCodes();
 
 	updateCountElements();
-});
+}
 
 async function downloadQrCodesAsZip() {
 	const zip = new JSZip();
@@ -85,4 +87,7 @@ async function downloadQrCodesAsZip() {
 	downloadLink.click();
 }
 
+// Events
+qrDataElement.addEventListener("input", generateQrCodes);
+validateUrlElement.addEventListener("change", updateURLs);
 downloadZipButton.addEventListener("click", downloadQrCodesAsZip);
