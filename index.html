@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+    <head>
+        <title>Generate QR Codes from URLs</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" text="text/script" href="style.css">
+    </head>
+    <body>
+        <div id="left-column">
+            <textarea id="qr-data" placeholder="Enter each URL on a new line"></textarea>
+        </div>
+        <div id="right-column">
+            <div id="settings">
+                <label>
+                    <input type="checkbox" id="validate-url" checked> Validate URLs
+                </label>
+                <button id="download-zip">Download All QR Codes</button>
+            </div>
+            <div id="stats">
+                <p>Total URLs: <span id="total-count">0</span></p>
+                <p>Valid URLs: <span id="valid-count">0</span></p>
+                <p>Invalid URLs: <span id="invalid-count">0</span></p>
+            </div>
+            <div id="qr-code-list"></div>
+        </div>
+
+        <script src="qrcode.min.js"></script>
+        <script src="jszip.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>

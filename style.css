@@ -1,0 +1,8 @@
+body { display: flex; height: 100vh; margin: 0; font-family: Arial, sans-serif; }
+#left-column, #right-column { padding: 20px; }
+#left-column { width: 50%; }
+#right-column { width: 50%; overflow-y: auto; position: relative; }
+#qr-data { width: 100%; height: 100%; resize: none; }
+#qr-code-list { display: flex; flex-direction: column; gap: 10px; }
+#settings { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+#stats { margin: 10px 0; }
