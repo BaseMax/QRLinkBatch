@@ -7,6 +7,9 @@ const validCountElement = document.querySelector("#valid-count");
 const invalidCountElement = document.querySelector("#invalid-count");
 const downloadZipButton = document.querySelector("#download-zip");
 
+// Const variables
+const QRCODE_SIZE = 250;
+
 // Variables
 let validUrls = [];
 let invalidUrls = [];
@@ -36,8 +39,8 @@ function generateQrCodes() {
 			const qrCodeContainer = document.createElement("div");
 			const qrCode = new QRCode(qrCodeContainer, {
 				text: url,
-				width: 100,
-				height: 100,
+				width: QRCODE_SIZE,
+				height: QRCODE_SIZE,
 			});
 			qrCodeContainer.setAttribute("data-url", url);
 			qrCodeListElement.appendChild(qrCodeContainer);
@@ -63,31 +66,33 @@ function updateCountElements() {
 	}
 }
 
-function updateURLs() {
-	generateQrCodes();
-
-	updateCountElements();
+function padNumber(number, length) {
+	return String(number).padStart(length, '0');
 }
 
 async function downloadQrCodesAsZip() {
 	const zip = new JSZip();
+	
+	let index = 1;
 
 	for (const url of validUrls) {
 		const qrCodeContainer = document.querySelector(`[data-url="${url}"] canvas`);
 		const dataUrl = qrCodeContainer.toDataURL("image/png");
 		const imgData = dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
 
-		zip.file(`${url.replace(/[^a-zA-Z0-9]/g, "_")}.png`, imgData, { base64: true });
+		const qrcodeName = `${padNumber(index++, 4)}.png`;
+		zip.file(qrcodeName, imgData, { base64: true });
 	}
 
 	const blob = await zip.generateAsync({ type: "blob" });
+
 	const downloadLink = document.createElement("a");
 	downloadLink.href = URL.createObjectURL(blob);
-	downloadLink.download = "qrcodes.zip";
+	downloadLink.download = "max-qrcodes.zip";
 	downloadLink.click();
 }
 
 // Events
 qrDataElement.addEventListener("input", generateQrCodes);
-validateUrlElement.addEventListener("change", updateURLs);
+validateUrlElement.addEventListener("change", generateQrCodes);
 downloadZipButton.addEventListener("click", downloadQrCodesAsZip);
