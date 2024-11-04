@@ -31,7 +31,7 @@ QRLinkBatch is a JavaScript web app that allows users to generate QR codes from 
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/YourUsername/QRLinkBatch.git
+   git clone https://github.com/BaseMax/QRLinkBatch.git
    cd QRLinkBatch
    ```
 
