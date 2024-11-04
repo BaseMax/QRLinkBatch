@@ -52,11 +52,11 @@ function generateQrCodes() {
 
 function updateCountElements() {
 	if (validateUrlElement.checked) {
-		validCountElement.style.display = "block";
-		invalidCountElement.style.display = "block";
+		validCountElement.parentElement.style.display = "block";
+		invalidCountElement.parentElement.style.display = "block";
 	} else {
-		validCountElement.style.display = "none";
-		invalidCountElement.style.display = "none";
+		validCountElement.parentElement.style.display = "none";
+		invalidCountElement.parentElement.style.display = "none";
 	}
 }
 
