@@ -46,10 +46,20 @@ function generateQrCodes() {
     totalCountElement.textContent = urls.length;
     validCountElement.textContent = validUrls.length;
     invalidCountElement.textContent = invalidUrls.length;
+
+    if (validateUrlElement.checked) {
+        document.querySelector("#stats").style.display = "block";
+    } else {
+        document.querySelector("#stats").style.display = "none";
+    }
 }
 
 qrDataElement.addEventListener("input", generateQrCodes);
-validateUrlElement.addEventListener("change", generateQrCodes);
+validateUrlElement.addEventListener("change", () => {
+    generateQrCodes();
+
+    document.querySelector("#stats").style.display = validateUrlElement.checked ? "block" : "none";
+});
 
 async function downloadQrCodesAsZip() {
     const zip = new JSZip();
