@@ -8,7 +8,7 @@ const invalidCountElement = document.querySelector("#invalid-count");
 const downloadZipButton = document.querySelector("#download-zip");
 
 // Const variables
-const QRCODE_SIZE = 250;
+const QRCODE_SIZE = 1024;
 
 // Variables
 let validUrls = [];
